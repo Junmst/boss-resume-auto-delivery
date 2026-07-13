@@ -302,6 +302,23 @@ textarea{resize:vertical;min-height:90px}
 .ai-loading{display:flex;align-items:center;gap:10px;padding:16px;color:#1677ff}
 .ai-loading::before{content:'';width:18px;height:18px;border:2px solid #1677ff;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+.job-row{cursor:pointer;transition:background .2s}
+.job-row:hover{background:#f0f5ff}
+.job-title-line{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;font-size:16px;user-select:none}
+.job-title-line .left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.job-title-line .title-text{font-weight:600;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.job-title-line .company-text{color:#888;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px}
+.job-title-line .salary-text{color:#1677ff;font-weight:600;font-size:14px;flex-shrink:0}
+.job-title-line .arrow{color:#999;font-size:12px;transition:transform .2s;margin-left:10px;flex-shrink:0}
+.job-row.open .arrow{transform:rotate(90deg)}
+.job-detail{display:none;padding:0 18px 16px;border-top:1px dashed #e8e8e8;background:#fafafa}
+.job-row.open .job-detail{display:block}
+.job-detail dl{display:grid;grid-template-columns:90px 1fr;gap:8px 14px;margin:0;font-size:14px;line-height:1.6}
+.job-detail dt{color:#777;font-weight:600}
+.job-detail dd{margin:0;white-space:pre-wrap;word-break:break-word}
+.tag-hit{display:inline-block;background:#f6ffed;border:1px solid #b7eb8f;color:#389e0d;padding:2px 8px;border-radius:3px;font-size:12px;margin-right:4px;margin-top:2px}
+.tag-miss{display:inline-block;background:#fff1f0;border:1px solid #ffa39e;color:#cf1322;padding:2px 8px;border-radius:3px;font-size:12px;margin-right:4px;margin-top:2px;text-decoration:line-through;opacity:.7}
+.hit-count{background:#52c41a;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-left:6px;flex-shrink:0}
 
 </style>
 </head>
@@ -792,9 +809,51 @@ async function previewJobs(){
     const response=await fetch('/api/preview-jobs',{method:'POST'});
     const data=await response.json();
     if(!data.ok)throw new Error(data.error||'读取失败');
-    document.getElementById('test-status').textContent=`已读取 ${data.count} 个岗位；未发送消息或投递。`;
-    document.getElementById('test-results').innerHTML=data.jobs.length?data.jobs.map((item,index)=>`<div class="test-result"><strong>岗位 ${index+1}</strong><dl><dt>关键词</dt><dd>${escapeHtml(item.keyword)}</dd><dt>职位</dt><dd>${escapeHtml(item.title)}</dd><dt>公司</dt><dd>${escapeHtml(item.company)}</dd><dt>地址</dt><dd>${escapeHtml(item.location)}</dd><dt>薪资</dt><dd>${escapeHtml(item.salary)}</dd><dt>标签</dt><dd>${escapeHtml((item.tags||[]).join(' / '))}</dd><dt>要求</dt><dd>${escapeHtml(item.requirements)}</dd></dl></div>`).join(''):'<div class="empty">未识别到岗位卡片，请确认搜索标签已加载完成。</div>';
+    document.getElementById('test-status').textContent=`已读取 ${data.count} 个岗位；点击岗位名可展开详情。`;
+    document.getElementById('test-results').innerHTML=data.jobs.length?data.jobs.map((item,index)=>jobRowHtml(item,index)).join(''):'<div class="empty">未识别到岗位卡片，请确认搜索标签已加载完成。</div>';
+    bindJobRowToggle();
   }catch(e){document.getElementById('test-status').textContent='读取岗位失败: '+e.message}
+}
+
+function jobRowHtml(item,index){
+  const title=item.title||'未知职位';
+  const company=item.company||'未知公司';
+  const salary=item.salary||'未提供';
+  return `<div class="test-result job-row" data-job="${escapeHtml(item.job_id||item.job_url||('idx_'+index))}">
+    <div class="job-title-line" onclick="toggleJobDetail(this)">
+      <div class="left">
+        <span class="title-text">${escapeHtml(title)}</span>
+        <span class="company-text">· ${escapeHtml(company)}</span>
+        <span class="hit-count">关键词: ${escapeHtml(item.keyword||'无')}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="salary-text">${escapeHtml(salary)}</span>
+        <span class="arrow">▶</span>
+      </div>
+    </div>
+    <div class="job-detail">
+      <dl>
+        <dt>关键词</dt><dd>${escapeHtml(item.keyword||'无')}</dd>
+        <dt>职位</dt><dd>${escapeHtml(title)}</dd>
+        <dt>公司</dt><dd>${escapeHtml(company)}</dd>
+        <dt>地址</dt><dd>${escapeHtml(item.location||'未提供')}</dd>
+        <dt>薪资</dt><dd>${escapeHtml(salary)}</dd>
+        <dt>标签</dt><dd>${escapeHtml((item.tags||[]).join(' / ') || '无')}</dd>
+        <dt>要求</dt><dd>${escapeHtml(item.requirements||'无')}</dd>
+      </dl>
+    </div>
+  </div>`;
+}
+
+function toggleJobDetail(headerEl){
+  const row=headerEl.closest('.job-row');
+  if(row)row.classList.toggle('open');
+}
+
+function bindJobRowToggle(){
+  document.querySelectorAll('.job-row').forEach(r=>{
+    r.querySelector('.job-detail').addEventListener('click',e=>e.stopPropagation());
+  });
 }
 
 function toggleApiSection(){
@@ -886,13 +945,32 @@ async function aiMatchJobs(){
 }
 
 function simpleTagMatch(jobs,tags){
+  // 多标签联合匹配：以命中标签数量为主要排序依据
+  // 命中所有标签 > 命中多个标签 > 命中单个标签 > 未命中
   const tl=tags.map(t=>t.toLowerCase());
   return jobs.map(j=>{
-    const text=JSON.stringify(j).toLowerCase();
-    const matched=tl.filter(t=>text.includes(t));
-    j.match_score=matched.length*10;
+    // 优先匹配职位名称、标签、要求字段
+    const titleLower=(j.title||'').toLowerCase();
+    const reqLower=(j.requirements||'').toLowerCase();
+    const tagsLower=((j.tags||[]).join(' ')).toLowerCase();
+    const allText=(titleLower+' '+reqLower+' '+tagsLower);
+
+    const matched=tl.filter(t=>allText.includes(t));
+    const titleHits=tl.filter(t=>titleLower.includes(t));
+    const tagHits=tl.filter(t=>tagsLower.includes(t));
+    const reqHits=tl.filter(t=>reqLower.includes(t));
+
+    // 评分：每个命中标签得 100 分；职位名命中额外 +50；标签字段命中额外 +30；要求命中 +10
+    let score=matched.length*100 + titleHits.length*50 + tagHits.length*30 + reqHits.length*10;
+    if(matched.length===tl.length)score+=200; // 命中全部额外奖励
+
+    j.match_score=Math.min(99,score||0);
     j.matched_tags=matched;
-    j.match_summary=matched.length?`命中 ${matched.length}/${tags.length} 个标签`:'未命中标签';
+    j.missed_tags=tl.filter(t=>!allText.includes(t));
+    j.title_hits=titleHits;
+    j.match_summary=matched.length===tl.length
+      ? `✓ 命中全部 ${tl.length} 个标签: ${matched.join(', ')}`
+      : (matched.length?`命中 ${matched.length}/${tl.length} 个标签: ${matched.join(', ')}`:'未命中任何标签');
     return j;
   }).sort((a,b)=>(b.match_score||0)-(a.match_score||0));
 }
@@ -918,32 +996,48 @@ function parseSalary(s){
 function renderMatchedJobs(){
   const resultsEl=document.getElementById('test-results');
   if(!matchedJobs.length){resultsEl.innerHTML='<div class="empty">暂无匹配结果</div>';return}
+  const allTags=state.searchKeywords||[];
+  const maxHit=allTags.length;
   resultsEl.innerHTML=matchedJobs.map((item,idx)=>{
     const score=item.match_score||0;
-    const cls=score>=70?'match-high':score>=40?'match-mid':'match-low';
-    const barColor=score>=70?'#52c41a':score>=40?'#faad14':'#ff4d4f';
-    const tags=(item.matched_tags||[]).map(t=>`<span class="match-tag">${escapeHtml(t)}</span>`).join('');
+    const matched=item.matched_tags||[];
+    const hitCount=matched.length;
+    const hitRatio=maxHit>0?hitCount/maxHit:0;
+    const cls=hitCount===maxHit&&maxHit>0?'match-high':hitRatio>=0.5?'match-mid':'match-low';
+    const barColor=hitCount===maxHit&&maxHit>0?'#52c41a':hitRatio>=0.5?'#faad14':'#ff4d4f';
+    const missed=item.missed_tags||allTags.filter(t=>!matched.includes(t));
+    const hitTags=matched.map(t=>`<span class="tag-hit">✓ ${escapeHtml(t)}</span>`).join('');
+    const missTags=missed.map(t=>`<span class="tag-miss">✗ ${escapeHtml(t)}</span>`).join('');
     const keyInfo=item.key_info||{};
-    const kiHtml=keyInfo.tech_stack?`<div style="margin-top:8px;font-size:13px;color:#666"><strong>技术栈:</strong> ${escapeHtml(keyInfo.tech_stack)}</div>`:'';
-    return `<div class="test-result" style="border-left:3px solid ${barColor}">
-      <div class="match-header">
-        <div class="match-score ${cls}">${score}</div>
-        <div style="flex:1">
-          <strong style="font-size:16px">${idx+1}. ${escapeHtml(item.title)}</strong>
-          <span style="color:#888;margin-left:8px">${escapeHtml(item.company)}</span>
-          <span style="color:#1677ff;margin-left:8px">${escapeHtml(item.salary)}</span>
+    const kiHtml=keyInfo.tech_stack?`<div style="margin-top:8px;font-size:13px;color:#666"><strong>技术栈:</strong> ${escapeHtml(keyInfo.tech_stack)}${keyInfo.highlights?'<br><strong>亮点:</strong> '+escapeHtml(keyInfo.highlights):''}${keyInfo.concerns?'<br><strong>注意:</strong> '+escapeHtml(keyInfo.concerns):''}</div>`:'';
+    return `<div class="test-result job-row" style="border-left:3px solid ${barColor}" data-job="${escapeHtml(item.job_id||item.job_url||('idx_'+idx))}">
+      <div class="job-title-line" onclick="toggleJobDetail(this)">
+        <div class="left">
+          <div class="match-score ${cls}">${matched.length}</div>
+          <span class="title-text">${idx+1}. ${escapeHtml(item.title||'未知职位')}</span>
+          <span class="company-text">· ${escapeHtml(item.company||'未知公司')}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="salary-text">${escapeHtml(item.salary||'未提供')}</span>
+          <span class="arrow">▶</span>
         </div>
       </div>
-      <div class="match-bar" style="width:${score}%;background:${barColor}"></div>
-      <div class="match-summary">${escapeHtml(item.match_summary||'')}</div>
-      <div class="match-meta">${tags}</div>
-      ${kiHtml}
-      <dl style="margin-top:8px;grid-template-columns:90px 1fr">
-        <dt>岗位要求</dt><dd>${escapeHtml((item.requirements||'无').substring(0,200))}</dd>
-        <dt>地点</dt><dd>${escapeHtml(item.location||'未知')}</dd>
-      </dl>
+      <div class="job-detail">
+        <dl>
+          <dt>匹配度</dt><dd><strong style="color:${barColor};font-size:18px">${score}分</strong> · ${escapeHtml(item.match_summary||'')}</dd>
+          <dt>命中标签</dt><dd>${hitTags||'<span style="color:#999">无</span>'}</dd>
+          <dt>未命中</dt><dd>${missTags||'<span style="color:#999">全部命中 ✓</span>'}</dd>
+          <dt>职位</dt><dd>${escapeHtml(item.title||'')}</dd>
+          <dt>公司</dt><dd>${escapeHtml(item.company||'')}</dd>
+          <dt>地点</dt><dd>${escapeHtml(item.location||'未提供')}</dd>
+          <dt>标签</dt><dd>${escapeHtml((item.tags||[]).join(' / ') || '无')}</dd>
+          <dt>岗位要求</dt><dd>${escapeHtml((item.requirements||'无').substring(0,500))}</dd>
+        </dl>
+        ${kiHtml}
+      </div>
     </div>`;
   }).join('');
+  bindJobRowToggle();
 }
 
 // === Init ===

@@ -63,14 +63,38 @@ class AIJobMatcher:
 
     @staticmethod
     def _fallback_match(jobs: list, tags: list) -> list:
-        """不依赖 AI 的简单标签计数匹配。"""
+        """不依赖 AI 的多标签联合匹配：以命中标签数量为主要排序依据。
+        命中数量越多分越高；职位名命中权重 > 标签字段命中 > 要求字段命中。
+        """
         tags_lower = [t.lower() for t in tags]
         for job in jobs:
-            text = json.dumps(job, ensure_ascii=False).lower()
-            matched = [t for t in tags_lower if t in text]
-            job["match_score"] = len(matched) * 10
+            title_lower = (job.get("title", "") or "").lower()
+            req_lower = (job.get("requirements", "") or "").lower()
+            tags_text = " ".join(job.get("tags", []) or []).lower()
+            full_text = f"{title_lower} {req_lower} {tags_text}"
+
+            matched = [tags[i] for i, t in enumerate(tags_lower) if t in full_text]
+            title_hits = [tags[i] for i, t in enumerate(tags_lower) if t in title_lower]
+            tag_hits = [tags[i] for i, t in enumerate(tags_lower) if t in tags_text]
+            req_hits = [tags[i] for i, t in enumerate(tags_lower) if t in req_lower]
+            missed = [t for t in tags if t not in matched]
+
+            # 主分：每个命中标签 100 分；副分：职位名/标签字段/要求命中分别额外加分
+            score = len(matched) * 100 + len(title_hits) * 50 + len(tag_hits) * 30 + len(req_hits) * 10
+            if len(matched) == len(tags) and len(tags) > 0:
+                score += 200  # 命中全部标签额外奖励
+
+            # 不再封顶 99，避免命中更多标签时分值相同
+            job["match_score"] = score
             job["matched_tags"] = matched
-            job["match_summary"] = f"命中 {len(matched)}/{len(tags)} 个标签: {', '.join(matched)}" if matched else "未命中标签"
+            job["missed_tags"] = missed
+            job["title_hits"] = title_hits
+            if len(matched) == len(tags) and len(tags) > 0:
+                job["match_summary"] = f"命中全部 {len(tags)} 个标签: {', '.join(matched)}"
+            elif matched:
+                job["match_summary"] = f"命中 {len(matched)}/{len(tags)} 个标签: {', '.join(matched)}"
+            else:
+                job["match_summary"] = "未命中任何标签"
         jobs.sort(key=lambda j: j.get("match_score", 0), reverse=True)
         return jobs
 
@@ -99,12 +123,20 @@ class AIJobMatcher:
                 "requirements": job.get("requirements", ""),
             })
 
-        return f"""你是一个专业的招聘匹配分析师。请根据以下信息，对每个岗位进行匹配度评分和分析。
+        return f"""你是一个专业的招聘匹配分析师。请根据以下信息，对每个岗位进行多标签联合匹配评分。
+
+【评分核心规则】—— 最重要的排序依据是"同时命中意向标签的数量"：
+- 命中所有 {len(tags)} 个标签的岗位 → 最高分（90-99分）
+- 命中 N 个标签的岗位 → 第二梯队（每少一个扣 8-10 分）
+- 仅命中 1 个标签的岗位 → 低分
+- 没有任何一个意向标签命中的岗位 → 接近 0 分
+- 同等命中数量下，再看简历与岗位描述的契合度、薪资、地点
+- 职位名称中命中的标签比职位描述/要求中命中的标签权重更高
 
 【我的简历/背景】
 {resume if resume else "（未提供简历，请仅基于标签匹配）"}
 
-【我的意向标签】
+【我的意向标签（共 {len(tags)} 个）】
 {', '.join(tags)}
 
 【待评估岗位列表】
@@ -112,9 +144,10 @@ class AIJobMatcher:
 
 请对每个岗位返回 JSON 格式的分析结果，包含：
 - id: 岗位编号
-- match_score: 匹配度分数(0-100)，综合考虑：标签命中数量(每个标签约10分)、简历与岗位描述的契合度(0-40分)、薪资/地点匹配度(0-10分)
-- matched_tags: 命中的意向标签列表
-- match_summary: 30字以内的匹配理由
+- match_score: 匹配度分数(0-99)，**先按命中标签数打分**（命中全部标签至少 90 分，命中一半 70-80 分，仅命中 1 个 50 分以下）
+- matched_tags: 命中的意向标签列表（按出现顺序）
+- missed_tags: 未命中的意向标签列表
+- match_summary: 30字以内，重点说明"命中了几个标签"以及简要理由
 - key_info: {{"tech_stack": "技术栈", "highlights": "亮点", "concerns": "需要注意的点"}}
 
 请只返回一个 JSON 数组，不要包含其他文字："""
@@ -205,10 +238,13 @@ class AIJobMatcher:
             analysis = id_map.get(idx, {})
             job["match_score"] = analysis.get("match_score", 0)
             job["matched_tags"] = analysis.get("matched_tags", [])
+            job["missed_tags"] = analysis.get("missed_tags", [])
             job["match_summary"] = analysis.get("match_summary", "")
             job["key_info"] = analysis.get("key_info", {})
             scored.append(job)
 
+        # AI 已按规则评分，但仍按 score 兜底排序以防 AI 没排序
+        scored.sort(key=lambda j: j.get("match_score", 0), reverse=True)
         return scored
 
     @staticmethod
