@@ -184,10 +184,18 @@ def save_templates(data):
 def load_api_config():
     """加载API配置"""
     path = os.path.join(PROJECT_ROOT, "config", "api.json")
+    defaults = {
+        "enabled": False, "provider": "openai", "api_key": "",
+        "api_base": "https://api.openai.com/v1", "model": "gpt-3.5-turbo",
+        "temperature": 0.7, "max_tokens": 200, "resume": "",
+    }
     if os.path.exists(path):
         with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {"enabled": False, "provider": "openai", "api_key": "", "api_base": "https://api.openai.com/v1", "model": "gpt-3.5-turbo", "temperature": 0.7, "max_tokens": 200}
+            data = json.load(f)
+            for k, v in defaults.items():
+                data.setdefault(k, v)
+            return data
+    return defaults
 
 
 def save_api_config(data):
@@ -279,6 +287,22 @@ textarea{resize:vertical;min-height:90px}
 .test-result dl{display:grid;grid-template-columns:110px 1fr;gap:8px 14px;margin:0;font-size:15px;line-height:1.6}
 .test-outcomes{display:grid;gap:8px;margin-bottom:12px}.test-outcome{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid #e8e8e8;border-radius:5px;font-size:15px}.test-outcome.ok{border-color:#b7eb8f;background:#f6ffed}.test-outcome.failed{border-color:#ffccc7;background:#fff2f0}.test-outcome span{color:#666;overflow-wrap:anywhere}
 .test-result dt{color:#777;font-weight:600}.test-result dd{margin:0;white-space:pre-wrap;word-break:break-word}
+.match-score{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.match-high{background:#52c41a}.match-mid{background:#faad14}.match-low{background:#ff4d4f}
+.match-header{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.match-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.match-tag{display:inline-block;background:#e6f7ff;color:#096dd9;padding:3px 10px;border-radius:3px;font-size:13px}
+.match-summary{font-size:14px;color:#555;margin-top:6px;line-height:1.6}
+.match-bar{height:4px;border-radius:2px;margin-top:6px;transition:width .5s}
+.ai-match-btn{background:linear-gradient(135deg,#722ed1,#1677ff);color:#fff;margin-left:10px}
+.ai-match-btn:hover{opacity:.9;transform:translateY(-1px)}
+.sort-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.sort-bar select{padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;width:auto}
+.resume-textarea{min-height:160px;font-size:15px;line-height:1.7}
+.ai-loading{display:flex;align-items:center;gap:10px;padding:16px;color:#1677ff}
+.ai-loading::before{content:'';width:18px;height:18px;border:2px solid #1677ff;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 </style>
 </head>
 <body>
@@ -420,7 +444,19 @@ textarea{resize:vertical;min-height:90px}
             <label class="toggle-switch"><input type="checkbox" id="cfg-test-mode" onchange="toggleTestMode()"><span class="toggle-slider"></span></label>
           </div>
           <div class="tip">开启后只搜索并读取岗位信息，不会投递或发送任何消息。关闭后按正式投递流程执行。</div>
-          <div class="btn-group"><button class="btn btn-default" onclick="previewJobs()">读取当前搜索标签</button></div>
+          <div class="btn-group">
+            <button class="btn btn-default" onclick="previewJobs()">📋 读取当前搜索标签</button>
+            <button class="btn btn-primary ai-match-btn" onclick="aiMatchJobs()" id="btn-ai-match">🤖 AI智能匹配</button>
+          </div>
+          <div class="sort-bar" id="ai-sort-bar" style="display:none">
+            <span style="font-size:14px;color:#555">排序:</span>
+            <select onchange="sortMatchedJobs()" id="ai-sort-select">
+              <option value="score">按匹配度降序</option>
+              <option value="tags">按命中标签数降序</option>
+              <option value="salary">按薪资降序</option>
+            </select>
+            <span style="font-size:13px;color:#888;margin-left:auto" id="ai-count-label"></span>
+          </div>
           <div class="test-status" id="test-status">测试模式未开启</div>
           <div class="test-results" id="test-results"></div>
         </div>
@@ -454,7 +490,7 @@ textarea{resize:vertical;min-height:90px}
     <div class="card">
       <div class="section-header">
         <h3>🤖 AI智能消息生成</h3>
-        <label class="toggle-switch"><input type="checkbox" id="api-enabled" onchange="toggleApiSection()"><span class="toggle-slider"></span></label>
+        <label class="toggle-switch"><input type="checkbox" id="api-enabled" onchange="toggleApiSection(); saveApiConfig()"><span class="toggle-slider"></span></label>
       </div>
       <div class="tip" style="margin-bottom:12px">开启后可根据职位描述自动生成个性化打招呼消息（需自行提供API Key）</div>
       <div id="api-section">
@@ -480,6 +516,11 @@ textarea{resize:vertical;min-height:90px}
         <div class="btn-group" style="margin-top:12px">
           <button class="btn btn-primary" onclick="testApi()">🧪 测试连接</button>
           <button class="btn btn-primary" onclick="saveApiConfig()">💾 保存设置</button>
+        </div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e8e8e8">
+          <label class="slabel">📄 我的简历（用于AI智能匹配）</label>
+          <textarea id="api-resume" class="resume-textarea" placeholder="粘贴你的简历内容或技能描述，AI将以此为基准匹配最合适的岗位...&#10;&#10;例如：&#10;- 技术栈: Python, React, Django, Docker&#10;- 经验: 3年后端开发&#10;- 学历: 本科计算机&#10;- 期望: 远程办公、AI方向"></textarea>
+          <div class="tip">简历仅保存在本地，不会上传到任何第三方。填写后AI会根据你的简历自动匹配合适的岗位。</div>
         </div>
       </div>
     </div>
@@ -601,6 +642,7 @@ function renderAll(){
   document.getElementById('api-base').value=a.api_base||'https://api.openai.com/v1';
   document.getElementById('api-temperature').value=a.temperature||0.7;
   document.getElementById('api-max-tokens').value=a.max_tokens||200;
+  document.getElementById('api-resume').value=a.resume||'';
   toggleApiSection();
 }
 
@@ -720,12 +762,16 @@ async function saveApiConfig(){
     api_base:document.getElementById('api-base').value,
     model:document.getElementById('api-model').value,
     temperature:parseFloat(document.getElementById('api-temperature').value),
-    max_tokens:parseInt(document.getElementById('api-max-tokens').value)
+    max_tokens:parseInt(document.getElementById('api-max-tokens').value),
+    resume:document.getElementById('api-resume').value
   };
   try{
     let r=await fetch('/api/config/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(a)});
-    if(r.ok)toast('API配置已保存！');
-    updateApiBadge();
+    if(r.ok){
+      state.api=a;
+      toast('API配置已保存！');
+      updateApiBadge();
+    }
   }catch(e){toast('保存失败: '+e.message,true)}
 }
 
@@ -754,7 +800,7 @@ async function previewJobs(){
 function toggleApiSection(){
   let en=document.getElementById('api-enabled').checked;
   document.getElementById('api-section').style.opacity=en?'1':'0.4';
-  document.getElementById('api-section').style.pointerEvents=en?'auto':'none';
+  document.getElementById('api-section').style.pointerEvents='auto';
   updateApiBadge();
 }
 
@@ -780,6 +826,124 @@ async function startDelivery(){
       toast('BOSS 登录页已在当前 Edge 新标签页打开。');
     }else toast('BOSS 登录页已在当前 Edge 新标签页打开。');
   }catch(e){toast('启动失败: '+e.message,true)}
+}
+
+// === AI 智能匹配 ===
+let matchedJobs=[];
+
+async function aiMatchJobs(){
+  const btn=document.getElementById('btn-ai-match');
+  const statusEl=document.getElementById('test-status');
+  const resultsEl=document.getElementById('test-results');
+  const sortBar=document.getElementById('ai-sort-bar');
+  const countLabel=document.getElementById('ai-count-label');
+
+  btn.disabled=true; btn.textContent='⏳ AI分析中...';
+  statusEl.textContent='正在读取搜索标签页的岗位信息...';
+  resultsEl.innerHTML='<div class="ai-loading">正在通过CDP读取岗位数据...</div>';
+
+  try{
+    // 1. 先读取搜索标签页的岗位
+    const previewResp=await fetch('/api/preview-jobs',{method:'POST'});
+    const previewData=await previewResp.json();
+    if(!previewData.ok)throw new Error(previewData.error||'读取岗位失败');
+    if(!previewData.jobs.length){statusEl.textContent='未读取到任何岗位，请先在BOSS页面搜索。';btn.disabled=false;btn.textContent='🤖 AI智能匹配';return}
+
+    statusEl.textContent=`已读取 ${previewData.jobs.length} 个岗位，正在调用AI进行智能匹配...`;
+    resultsEl.innerHTML='<div class="ai-loading">AI正在分析岗位匹配度，请稍候...</div>';
+
+    // 2. 调用AI匹配
+    const tags=state.searchKeywords;
+    const resume=document.getElementById('api-resume').value||state.api.resume||'';
+    const matchResp=await fetch('/api/ai-match',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({jobs:previewData.jobs,tags:tags,resume:resume})
+    });
+    const matchData=await matchResp.json();
+    if(!matchData.ok){
+      // 如果AI不可用，用本地标签计数作为fallback
+      if(matchData.error&&matchData.error.includes('未开启')){
+        statusEl.textContent='AI功能未开启，使用标签计数匹配。请在AI配置中开启后重试。';
+        matchedJobs=simpleTagMatch(previewData.jobs,tags);
+      }else{
+        throw new Error(matchData.error||'AI匹配失败');
+      }
+    }else{
+      matchedJobs=matchData.results||[];
+      const avgScore=matchedJobs.length?Math.round(matchedJobs.reduce((s,j)=>s+(j.match_score||0),0)/matchedJobs.length):0;
+      statusEl.textContent=`AI智能匹配完成！共 ${matchedJobs.length} 个岗位，平均匹配度 ${avgScore} 分`;
+    }
+
+    sortBar.style.display='flex';
+    countLabel.textContent=`共 ${matchedJobs.length} 个岗位`;
+    renderMatchedJobs();
+  }catch(e){
+    statusEl.textContent='AI匹配失败: '+e.message;
+    resultsEl.innerHTML='<div class="empty">'+escapeHtml(e.message)+'</div>';
+  }
+  btn.disabled=false; btn.textContent='🤖 AI智能匹配';
+}
+
+function simpleTagMatch(jobs,tags){
+  const tl=tags.map(t=>t.toLowerCase());
+  return jobs.map(j=>{
+    const text=JSON.stringify(j).toLowerCase();
+    const matched=tl.filter(t=>text.includes(t));
+    j.match_score=matched.length*10;
+    j.matched_tags=matched;
+    j.match_summary=matched.length?`命中 ${matched.length}/${tags.length} 个标签`:'未命中标签';
+    return j;
+  }).sort((a,b)=>(b.match_score||0)-(a.match_score||0));
+}
+
+function sortMatchedJobs(){
+  const sortBy=document.getElementById('ai-sort-select').value;
+  if(sortBy==='tags'){
+    matchedJobs.sort((a,b)=>(b.matched_tags||[]).length-(a.matched_tags||[]).length);
+  }else if(sortBy==='salary'){
+    matchedJobs.sort((a,b)=>parseSalary(b.salary)-parseSalary(a.salary));
+  }else{
+    matchedJobs.sort((a,b)=>(b.match_score||0)-(a.match_score||0));
+  }
+  renderMatchedJobs();
+}
+
+function parseSalary(s){
+  if(!s)return 0;
+  const m=s.toString().match(/(\d+)[kK]/);
+  return m?parseInt(m[1]):parseInt(s)||0;
+}
+
+function renderMatchedJobs(){
+  const resultsEl=document.getElementById('test-results');
+  if(!matchedJobs.length){resultsEl.innerHTML='<div class="empty">暂无匹配结果</div>';return}
+  resultsEl.innerHTML=matchedJobs.map((item,idx)=>{
+    const score=item.match_score||0;
+    const cls=score>=70?'match-high':score>=40?'match-mid':'match-low';
+    const barColor=score>=70?'#52c41a':score>=40?'#faad14':'#ff4d4f';
+    const tags=(item.matched_tags||[]).map(t=>`<span class="match-tag">${escapeHtml(t)}</span>`).join('');
+    const keyInfo=item.key_info||{};
+    const kiHtml=keyInfo.tech_stack?`<div style="margin-top:8px;font-size:13px;color:#666"><strong>技术栈:</strong> ${escapeHtml(keyInfo.tech_stack)}</div>`:'';
+    return `<div class="test-result" style="border-left:3px solid ${barColor}">
+      <div class="match-header">
+        <div class="match-score ${cls}">${score}</div>
+        <div style="flex:1">
+          <strong style="font-size:16px">${idx+1}. ${escapeHtml(item.title)}</strong>
+          <span style="color:#888;margin-left:8px">${escapeHtml(item.company)}</span>
+          <span style="color:#1677ff;margin-left:8px">${escapeHtml(item.salary)}</span>
+        </div>
+      </div>
+      <div class="match-bar" style="width:${score}%;background:${barColor}"></div>
+      <div class="match-summary">${escapeHtml(item.match_summary||'')}</div>
+      <div class="match-meta">${tags}</div>
+      ${kiHtml}
+      <dl style="margin-top:8px;grid-template-columns:90px 1fr">
+        <dt>岗位要求</dt><dd>${escapeHtml((item.requirements||'无').substring(0,200))}</dd>
+        <dt>地点</dt><dd>${escapeHtml(item.location||'未知')}</dd>
+      </dl>
+    </div>`;
+  }).join('');
 }
 
 // === Init ===
@@ -936,6 +1100,42 @@ class Handler(BaseHTTPRequestHandler):
                         self._send(200, json.dumps({"ok": True, "status": "login_tab_opened"}))
                 except Exception as exc:
                     logger.error(f"打开 BOSS 页面失败: {exc}", exc_info=True)
+                    self._send(500, json.dumps({"ok": False, "error": str(exc)}))
+
+            elif self.path == "/api/ai-match":
+                try:
+                    from src.ai_matcher import AIJobMatcher
+                    api = load_api_config()
+                    if not api.get("enabled"):
+                        self._send(400, json.dumps({"ok": False, "error": "AI功能未开启，请在AI配置中开启"}))
+                        return
+                    body = self._read_body()
+                    jobs = body.get("jobs", [])
+                    tags = body.get("tags", [])
+                    resume = body.get("resume", api.get("resume", ""))
+                    matcher = AIJobMatcher(api)
+                    scored = matcher.match_jobs(jobs, resume or "", tags)
+                    self._send(200, json.dumps({"ok": True, "results": scored, "count": len(scored)}, ensure_ascii=False))
+                except Exception as exc:
+                    logger.error(f"AI匹配失败: {exc}", exc_info=True)
+                    self._send(500, json.dumps({"ok": False, "error": str(exc)}))
+
+            elif self.path == "/api/ai-detail":
+                try:
+                    from src.ai_matcher import AIJobMatcher
+                    api = load_api_config()
+                    if not api.get("enabled"):
+                        self._send(400, json.dumps({"ok": False, "error": "AI功能未开启"}))
+                        return
+                    body = self._read_body()
+                    job = body.get("job", {})
+                    tags = body.get("tags", [])
+                    resume = body.get("resume", api.get("resume", ""))
+                    matcher = AIJobMatcher(api)
+                    analysis = matcher.analyze_job_detail(job, resume or "", tags)
+                    self._send(200, json.dumps({"ok": True, "analysis": analysis}, ensure_ascii=False))
+                except Exception as exc:
+                    logger.error(f"AI详情分析失败: {exc}", exc_info=True)
                     self._send(500, json.dumps({"ok": False, "error": str(exc)}))
 
             else:

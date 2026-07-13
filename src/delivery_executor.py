@@ -140,6 +140,19 @@ class DeliveryExecutor:
 
     def _generate_message(self, job_info):
         """生成打招呼消息"""
+        # 如果AI已启用且配置了API，尝试使用AI生成
+        api_config = self._load_api_config()
+        if api_config.get("enabled") and api_config.get("api_key"):
+            try:
+                from src.ai_matcher import AIJobMatcher
+                matcher = AIJobMatcher(api_config)
+                ai_msg = matcher.generate_message(job_info, api_config.get("resume", ""), [])
+                if ai_msg and len(ai_msg) > 10:
+                    logger.info("使用AI生成打招呼消息")
+                    return ai_msg[:150]
+            except Exception as e:
+                logger.warning(f"AI生成消息失败，回退到模板: {e}")
+
         # 优先使用模板列表随机选择
         if self.templates:
             template = random.choice(self.templates)
@@ -156,6 +169,17 @@ class DeliveryExecutor:
             message = message[:147] + "..."
 
         return message
+
+    @staticmethod
+    def _load_api_config():
+        """加载API配置"""
+        import json
+        import os
+        path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "api.json")
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        return {"enabled": False}
 
     def _random_delay(self, min_sec, max_sec):
         """随机延迟"""
