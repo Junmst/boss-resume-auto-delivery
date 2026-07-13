@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "updated_at": "2026-07-13T22:05:08",
+  "results": [],
+  "search_outcomes": [],
+  "error": "Message: invalid session id: session deleted as the browser has closed the connection\nfrom disconnected: not connected to DevTools\n  (Session info: MicrosoftEdge=150.0.4078.65); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception\nStacktrace:\n\tmsedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]\n\tmsedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]\n\tmsedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]\n\tmsedgedriver!(No symbol) [0x7ff6d9b47dc2]\n\tmsedgedriver!(No symbol) [0x7ff6d9b632d3]\n\tmsedgedriver!(No symbol) [0x7ff6d9bc5b23]\n\tmsedgedriver!(No symbol) [0x7ff6d9bdbf8f]\n\tmsedgedriver!(No symbol) [0x7ff6d9b96bfc]\n\tmsedgedriver!(No symbol) [0x7ff6d9b95e56]\n\tmsedgedriver!(No symbol) [0x7ff6d9b96a23]\n\tmsedgedriver!(No symbol) [0x7ff6d9dd1131]\n\tmsedgedriver!(No symbol) [0x7ff6d9dcd54f]\n\tmsedgedriver!(No symbol) [0x7ff6d9dde3d9]\n\tmsedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]\n\tmsedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]\n\tmsedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]\n\tmsedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]\n\tmsedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]\n\tKERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]\n\tntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]\n"
+}

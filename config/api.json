@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "provider": "custom",
+  "api_key": "sk-4eaf339b5df6045d7898293d44248e8d3f2e01ae99f653cba9e6b4e134581101",
+  "api_base": "https://api.boft.ai/v1",
+  "model": "gpt-5.4",
+  "temperature": 0.7,
+  "max_tokens": 1000
+}

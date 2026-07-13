@@ -1,0 +1,58 @@
+app:
+  name: BOSS自动投递工具
+  version: 1.0.0
+  log_level: INFO
+browser:
+  type: edge
+  headless: false
+  user_data_dir: ./edge_browser_data
+  debug_port: 9222
+  login_timeout_seconds: 600
+  window_size:
+  - 1920
+  - 1080
+search:
+  keywords:
+  - ai
+  - vibe
+  - coding
+  - vibecoding
+  - 开发
+  - 实习生
+  - 实习
+  - claude
+  city: ''
+  experience: 3-5年
+  education: 本科
+  salary_min: 15
+  salary_max: 30
+  job_type: 全职
+filter:
+  required_keywords: []
+  excluded_keywords:
+  - 外包
+  - 派遣
+  - 大小周
+  - '996'
+  company_size:
+  - 500-999人
+  - 1000人以上
+  finance_stage:
+  - 已上市
+  - D轮及以上
+  min_salary: 15
+delivery:
+  mode: smart
+  max_per_hour: 20
+  max_per_day: 100
+  greeting_template: 您好，我目前大三，计算机相关专业，系统学过 C 语言、数据库、计算机网络、数据结构、操作系统等课程。最近主要使用 Hermes、CodeBuddy
+    等 AI 开发工具接入 GPT API 做实际项目开发，独立做过一个桌面使用记录与分析工具，并持续迭代发布到 GitHub。看了岗位描述，和我最近在做的 AI
+    辅助开发、需求拆解、代码实现、调试迭代这些经历比较匹配，想和您进一步沟通一下。
+  auto_send_greeting: false
+  test_mode: true
+anti_crawler:
+  min_delay: 3
+  max_delay: 8
+  random_scroll: true
+  mouse_simulation: true
+  max_retry: 3

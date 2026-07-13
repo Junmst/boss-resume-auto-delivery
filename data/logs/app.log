@@ -1,0 +1,1068 @@
+2026-07-13 19:31:07,314 [INFO] BOSS - ============================================================
+2026-07-13 19:31:07,314 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 19:31:07,314 [INFO] BOSS - ============================================================
+2026-07-13 19:31:07,319 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 19:31:07,319 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 19:31:15,318 [ERROR] BOSS - 运行异常: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+Traceback (most recent call last):
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\driver_finder.py", line 67, in _binary_paths
+    output = SeleniumManager().binary_paths(self._to_args())
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\selenium_manager.py", line 55, in binary_paths
+    return self._run(args)
+           ~~~~~~~~~^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\selenium_manager.py", line 154, in _run
+    raise WebDriverException(
+        f"Unsuccessful command executed: {command}; code: {completed_proc.returncode}\n{result}\n{stderr}"
+    )
+selenium.common.exceptions.WebDriverException: Message: Unsuccessful command executed: C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --language-binding python --output json; code: 65
+{'code': 65, 'message': 'error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)', 'driver_path': '', 'browser_path': ''}
+
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\apps\boss简历自动投递\src\main.py", line 160, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\main.py", line 58, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 26, in _init_driver
+    self.driver = self._init_chrome(browser_config)
+                  ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 90, in _init_chrome
+    driver = webdriver.Chrome(options=options)
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chrome\webdriver.py", line 45, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.CHROME["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chromium\webdriver.py", line 50, in __init__
+    if finder.get_browser_path():
+       ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\driver_finder.py", line 47, in get_browser_path
+    return self._binary_paths()["browser_path"]
+           ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\driver_finder.py", line 78, in _binary_paths
+    raise NoSuchDriverException(msg) from err
+selenium.common.exceptions.NoSuchDriverException: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
+2026-07-13 19:31:15,339 [INFO] BOSS - 程序已退出
+2026-07-13 19:31:16,894 [INFO] BOSS - ============================================================
+2026-07-13 19:31:16,895 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 19:31:16,895 [INFO] BOSS - ============================================================
+2026-07-13 19:31:16,896 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 19:31:16,896 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 19:31:17,224 [ERROR] BOSS - 运行异常: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+Traceback (most recent call last):
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\driver_finder.py", line 67, in _binary_paths
+    output = SeleniumManager().binary_paths(self._to_args())
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\selenium_manager.py", line 55, in binary_paths
+    return self._run(args)
+           ~~~~~~~~~^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\selenium_manager.py", line 154, in _run
+    raise WebDriverException(
+        f"Unsuccessful command executed: {command}; code: {completed_proc.returncode}\n{result}\n{stderr}"
+    )
+selenium.common.exceptions.WebDriverException: Message: Unsuccessful command executed: C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --language-binding python --output json; code: 65
+{'code': 65, 'message': 'error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)', 'driver_path': '', 'browser_path': ''}
+
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\apps\boss简历自动投递\src\main.py", line 160, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\main.py", line 58, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 26, in _init_driver
+    self.driver = self._init_chrome(browser_config)
+                  ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 90, in _init_chrome
+    driver = webdriver.Chrome(options=options)
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chrome\webdriver.py", line 45, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.CHROME["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chromium\webdriver.py", line 50, in __init__
+    if finder.get_browser_path():
+       ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\driver_finder.py", line 47, in get_browser_path
+    return self._binary_paths()["browser_path"]
+           ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\driver_finder.py", line 78, in _binary_paths
+    raise NoSuchDriverException(msg) from err
+selenium.common.exceptions.NoSuchDriverException: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
+2026-07-13 19:31:17,228 [INFO] BOSS - 程序已退出
+2026-07-13 19:31:26,056 [INFO] BOSS - ============================================================
+2026-07-13 19:31:26,056 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 19:31:26,056 [INFO] BOSS - ============================================================
+2026-07-13 19:31:26,057 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 19:31:26,057 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 19:31:26,345 [ERROR] BOSS - 运行异常: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+Traceback (most recent call last):
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\driver_finder.py", line 67, in _binary_paths
+    output = SeleniumManager().binary_paths(self._to_args())
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\selenium_manager.py", line 55, in binary_paths
+    return self._run(args)
+           ~~~~~~~~~^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\selenium_manager.py", line 154, in _run
+    raise WebDriverException(
+        f"Unsuccessful command executed: {command}; code: {completed_proc.returncode}\n{result}\n{stderr}"
+    )
+selenium.common.exceptions.WebDriverException: Message: Unsuccessful command executed: C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --language-binding python --output json; code: 65
+{'code': 65, 'message': 'error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)', 'driver_path': '', 'browser_path': ''}
+
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\apps\boss简历自动投递\src\main.py", line 160, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\main.py", line 58, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 26, in _init_driver
+    self.driver = self._init_chrome(browser_config)
+                  ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 90, in _init_chrome
+    driver = webdriver.Chrome(options=options)
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chrome\webdriver.py", line 45, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.CHROME["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chromium\webdriver.py", line 50, in __init__
+    if finder.get_browser_path():
+       ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\driver_finder.py", line 47, in get_browser_path
+    return self._binary_paths()["browser_path"]
+           ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\driver_finder.py", line 78, in _binary_paths
+    raise NoSuchDriverException(msg) from err
+selenium.common.exceptions.NoSuchDriverException: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
+2026-07-13 19:31:26,349 [INFO] BOSS - 程序已退出
+2026-07-13 19:44:47,597 [INFO] BOSS - ============================================================
+2026-07-13 19:44:47,597 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 19:44:47,597 [INFO] BOSS - ============================================================
+2026-07-13 19:44:47,598 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 19:44:47,598 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 19:45:13,534 [INFO] src.browser_driver - EDGE 浏览器启动成功
+2026-07-13 19:45:13,535 [INFO] BOSS - 正在打开BOSS直聘...
+2026-07-13 19:45:18,139 [INFO] src.session_manager - Cookie文件不存在，需要手动登录
+2026-07-13 19:45:18,139 [INFO] BOSS - --------------------------------------------------
+2026-07-13 19:45:18,139 [INFO] BOSS - 请在浏览器中完成登录操作
+2026-07-13 19:45:18,139 [INFO] BOSS - 支持: 微信扫码 / 手机号 / 账号密码
+2026-07-13 19:45:18,139 [INFO] BOSS - --------------------------------------------------
+2026-07-13 19:45:18,141 [ERROR] BOSS - 运行异常: lost sys.stdin
+Traceback (most recent call last):
+  File "d:\apps\boss简历自动投递\src\main.py", line 163, in run
+    if not self._login():
+           ~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\main.py", line 91, in _login
+    input("登录完成后按 Enter 键继续...")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: lost sys.stdin
+2026-07-13 19:45:18,148 [INFO] BOSS - 正在关闭浏览器...
+2026-07-13 19:45:20,673 [INFO] src.browser_driver - 浏览器已关闭
+2026-07-13 19:45:20,673 [INFO] BOSS - 程序已退出
+2026-07-13 19:46:25,899 [INFO] BOSS - ============================================================
+2026-07-13 19:46:25,900 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 19:46:25,900 [INFO] BOSS - ============================================================
+2026-07-13 19:46:25,902 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 19:46:25,902 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 19:46:29,407 [INFO] src.browser_driver - EDGE 浏览器启动成功
+2026-07-13 19:46:29,408 [INFO] BOSS - 正在打开BOSS直聘...
+2026-07-13 19:46:34,625 [INFO] src.session_manager - Cookie文件不存在，需要手动登录
+2026-07-13 19:46:34,626 [INFO] BOSS - --------------------------------------------------
+2026-07-13 19:46:34,626 [INFO] BOSS - 请在浏览器中完成登录操作
+2026-07-13 19:46:34,626 [INFO] BOSS - 支持: 微信扫码 / 手机号 / 账号密码
+2026-07-13 19:46:34,626 [INFO] BOSS - --------------------------------------------------
+2026-07-13 19:46:56,239 [WARNING] src.session_manager - 无法确定登录状态，假设已登录
+2026-07-13 19:46:56,253 [INFO] src.session_manager - Cookie已保存至: data/cookies.json
+2026-07-13 19:46:56,253 [INFO] BOSS - 登录成功!
+2026-07-13 19:46:56,257 [INFO] BOSS - 历史投递: 0 个, 今日已投: 0 个
+2026-07-13 19:46:56,257 [INFO] BOSS - 搜索URL: https://www.zhipin.com/web/geek/job?query=ai&city=
+2026-07-13 19:47:48,833 [WARNING] src.page_handler - 未找到任何职位卡片
+2026-07-13 19:47:48,843 [INFO] src.page_handler - 当前页面标题: boss - 搜索
+2026-07-13 19:47:48,844 [WARNING] BOSS - 未找到任何职位，请检查搜索条件
+2026-07-13 19:47:48,844 [INFO] BOSS - 正在关闭浏览器...
+2026-07-13 19:47:51,585 [INFO] src.browser_driver - 浏览器已关闭
+2026-07-13 19:47:51,587 [INFO] BOSS - 程序已退出
+2026-07-13 19:50:41,355 [INFO] BOSS - ============================================================
+2026-07-13 19:50:41,355 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 19:50:41,355 [INFO] BOSS - ============================================================
+2026-07-13 19:50:41,356 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 19:50:41,356 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 19:50:44,121 [ERROR] BOSS - 运行异常: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+Traceback (most recent call last):
+  File "d:\apps\boss简历自动投递\src\main.py", line 201, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\main.py", line 65, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 28, in _init_driver
+    self.driver = self._init_edge(browser_config)
+                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 136, in _init_edge
+    driver = webdriver.Edge(
+        service=EdgeService(executable_path=os.fspath(driver_path)),
+        options=options,
+    )
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\edge\webdriver.py", line 45, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.EDGE["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chromium\webdriver.py", line 66, in __init__
+    super().__init__(command_executor=executor, options=self.options)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\webdriver.py", line 25, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 300, in __init__
+    self.start_session(capabilities)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 396, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 492, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+
+2026-07-13 19:50:44,139 [INFO] BOSS - 程序已退出
+2026-07-13 19:51:31,814 [INFO] BOSS - ============================================================
+2026-07-13 19:51:31,815 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 19:51:31,815 [INFO] BOSS - ============================================================
+2026-07-13 19:51:31,816 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 19:51:31,816 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 19:51:34,587 [ERROR] BOSS - 运行异常: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+Traceback (most recent call last):
+  File "d:\apps\boss简历自动投递\src\main.py", line 201, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\main.py", line 65, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 28, in _init_driver
+    self.driver = self._init_edge(browser_config)
+                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 136, in _init_edge
+    driver = webdriver.Edge(
+        service=EdgeService(executable_path=os.fspath(driver_path)),
+        options=options,
+    )
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\edge\webdriver.py", line 45, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.EDGE["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chromium\webdriver.py", line 66, in __init__
+    super().__init__(command_executor=executor, options=self.options)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\webdriver.py", line 25, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 300, in __init__
+    self.start_session(capabilities)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 396, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 492, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+
+2026-07-13 19:51:34,605 [INFO] BOSS - 程序已退出
+2026-07-13 19:51:45,376 [INFO] BOSS - ============================================================
+2026-07-13 19:51:45,377 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 19:51:45,377 [INFO] BOSS - ============================================================
+2026-07-13 19:51:45,377 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 19:51:45,377 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 19:51:48,158 [ERROR] BOSS - 运行异常: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+Traceback (most recent call last):
+  File "d:\apps\boss简历自动投递\src\main.py", line 201, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\main.py", line 65, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 28, in _init_driver
+    self.driver = self._init_edge(browser_config)
+                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 136, in _init_edge
+    driver = webdriver.Edge(
+        service=EdgeService(executable_path=os.fspath(driver_path)),
+        options=options,
+    )
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\edge\webdriver.py", line 45, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.EDGE["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chromium\webdriver.py", line 66, in __init__
+    super().__init__(command_executor=executor, options=self.options)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\webdriver.py", line 25, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 300, in __init__
+    self.start_session(capabilities)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 396, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 492, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+
+2026-07-13 19:51:48,178 [INFO] BOSS - 程序已退出
+2026-07-13 20:21:35,954 [INFO] BOSS - ============================================================
+2026-07-13 20:21:35,956 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 20:21:35,956 [INFO] BOSS - ============================================================
+2026-07-13 20:21:35,957 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 20:21:57,495 [INFO] BOSS - ============================================================
+2026-07-13 20:21:57,495 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 20:21:57,495 [INFO] BOSS - ============================================================
+2026-07-13 20:21:57,496 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 20:21:57,496 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 20:21:59,761 [ERROR] BOSS - 运行异常: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+Traceback (most recent call last):
+  File "D:\apps\boss简历自动投递\src\main.py", line 181, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "D:\apps\boss简历自动投递\src\main.py", line 61, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "D:\apps\boss简历自动投递\src\browser_driver.py", line 28, in _init_driver
+    self.driver = self._init_edge(browser_config)
+                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\apps\boss简历自动投递\src\browser_driver.py", line 136, in _init_edge
+    driver = webdriver.Edge(
+        service=EdgeService(executable_path=os.fspath(driver_path)),
+        options=options,
+    )
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\edge\webdriver.py", line 45, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.EDGE["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chromium\webdriver.py", line 66, in __init__
+    super().__init__(command_executor=executor, options=self.options)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\webdriver.py", line 25, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 300, in __init__
+    self.start_session(capabilities)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 396, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 492, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+
+2026-07-13 20:21:59,772 [INFO] BOSS - 程序已退出
+2026-07-13 20:23:09,514 [INFO] BOSS - ============================================================
+2026-07-13 20:23:09,514 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 20:23:09,514 [INFO] BOSS - ============================================================
+2026-07-13 20:23:09,515 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 20:23:09,515 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 20:23:11,894 [ERROR] BOSS - 运行异常: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+Traceback (most recent call last):
+  File "D:\apps\boss简历自动投递\src\main.py", line 181, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "D:\apps\boss简历自动投递\src\main.py", line 61, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "D:\apps\boss简历自动投递\src\browser_driver.py", line 28, in _init_driver
+    self.driver = self._init_edge(browser_config)
+                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\apps\boss简历自动投递\src\browser_driver.py", line 143, in _init_edge
+    driver = webdriver.Edge(
+        service=EdgeService(executable_path=os.fspath(driver_path)),
+        options=options,
+    )
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\edge\webdriver.py", line 45, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.EDGE["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chromium\webdriver.py", line 66, in __init__
+    super().__init__(command_executor=executor, options=self.options)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\webdriver.py", line 25, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 300, in __init__
+    self.start_session(capabilities)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 396, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 492, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+
+2026-07-13 20:23:11,903 [INFO] BOSS - 程序已退出
+2026-07-13 20:23:55,584 [INFO] BOSS - ============================================================
+2026-07-13 20:23:55,584 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 20:23:55,584 [INFO] BOSS - ============================================================
+2026-07-13 20:23:55,585 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 20:23:55,585 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 20:23:55,587 [ERROR] BOSS - 运行异常: 'BrowserDriver' object has no attribute 'logger'
+Traceback (most recent call last):
+  File "d:\apps\boss简历自动投递\src\main.py", line 181, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\main.py", line 61, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 28, in _init_driver
+    self.driver = self._init_edge(browser_config)
+                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "d:\apps\boss简历自动投递\src\browser_driver.py", line 131, in _init_edge
+    self.logger.info(f"使用用户数据目录: {user_data_path}")
+    ^^^^^^^^^^^
+AttributeError: 'BrowserDriver' object has no attribute 'logger'
+2026-07-13 20:23:55,591 [INFO] BOSS - 程序已退出
+2026-07-13 20:24:27,545 [INFO] BOSS - ============================================================
+2026-07-13 20:24:27,545 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 20:24:27,545 [INFO] BOSS - ============================================================
+2026-07-13 20:24:27,546 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 20:24:27,546 [INFO] BOSS - 正在初始化浏览器...
+2026-07-13 20:24:27,548 [INFO] src.browser_driver - 使用用户数据目录: D:\apps\boss简历自动投递\edge_browser_data
+2026-07-13 20:24:29,831 [ERROR] BOSS - 运行异常: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+Traceback (most recent call last):
+  File "D:\apps\boss简历自动投递\src\main.py", line 181, in run
+    self._init_modules()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "D:\apps\boss简历自动投递\src\main.py", line 61, in _init_modules
+    self.browser = BrowserDriver(self.config)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\apps\boss简历自动投递\src\browser_driver.py", line 18, in __init__
+    self._init_driver()
+    ~~~~~~~~~~~~~~~~~^^
+  File "D:\apps\boss简历自动投递\src\browser_driver.py", line 28, in _init_driver
+    self.driver = self._init_edge(browser_config)
+                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\apps\boss简历自动投递\src\browser_driver.py", line 147, in _init_edge
+    driver = webdriver.Edge(
+        service=EdgeService(executable_path=os.fspath(driver_path)),
+        options=options,
+    )
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\edge\webdriver.py", line 45, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.EDGE["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\chromium\webdriver.py", line 66, in __init__
+    super().__init__(command_executor=executor, options=self.options)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\common\webdriver.py", line 25, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 300, in __init__
+    self.start_session(capabilities)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 396, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\webdriver.py", line 492, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\27960\AppData\Roaming\Python\Python314\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	msedgedriver!GetHandleVerifier [0x7ff6da1a74c5+e415]
+	msedgedriver!GetHandleVerifier [0x7ff6da1a7524+e474]
+	msedgedriver!GetHandleVerifier [0x7ff6da826b86+68dad6]
+	msedgedriver!(No symbol) [0x7ff6d9b8ee62]
+	msedgedriver!(No symbol) [0x7ff6d9b8ac80]
+	msedgedriver!(No symbol) [0x7ff6d9bcbaf3]
+	msedgedriver!(No symbol) [0x7ff6d9bcb486]
+	msedgedriver!(No symbol) [0x7ff6d9b96bfc]
+	msedgedriver!(No symbol) [0x7ff6d9b95e56]
+	msedgedriver!(No symbol) [0x7ff6d9b96a23]
+	msedgedriver!(No symbol) [0x7ff6d9dd1131]
+	msedgedriver!(No symbol) [0x7ff6d9dcd54f]
+	msedgedriver!(No symbol) [0x7ff6d9dde3d9]
+	msedgedriver!GetHandleVerifier [0x7ff6da1c2bb1+29b01]
+	msedgedriver!GetHandleVerifier [0x7ff6da1cb3b6+32306]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af024+15f74]
+	msedgedriver!GetHandleVerifier [0x7ff6da1af145+16095]
+	msedgedriver!GetHandleVerifier [0x7ff6da19b563+24b3]
+	KERNEL32!BaseThreadInitThunk [0x7ff88e55e957+17]
+	ntdll!RtlUserThreadStart [0x7ff88f907c1c+2c]
+
+2026-07-13 20:24:29,840 [INFO] BOSS - 程序已退出
+2026-07-13 20:55:50,185 [INFO] BOSS - ============================================================
+2026-07-13 20:55:50,186 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 20:55:50,186 [INFO] BOSS - ============================================================
+2026-07-13 20:55:50,188 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 20:59:34,455 [INFO] BOSS - ============================================================
+2026-07-13 20:59:34,456 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 20:59:34,456 [INFO] BOSS - ============================================================
+2026-07-13 20:59:34,457 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:01:04,874 [INFO] BOSS - ============================================================
+2026-07-13 21:01:04,874 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:01:04,874 [INFO] BOSS - ============================================================
+2026-07-13 21:01:04,875 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:01:43,077 [INFO] BOSS - ============================================================
+2026-07-13 21:01:43,077 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:01:43,077 [INFO] BOSS - ============================================================
+2026-07-13 21:01:43,078 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:01:43,079 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:01:43,079 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:03:52,065 [INFO] BOSS - ============================================================
+2026-07-13 21:03:52,066 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:03:52,066 [INFO] BOSS - ============================================================
+2026-07-13 21:03:52,067 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:03:52,069 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:03:52,069 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:03:52,070 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:04:18,866 [INFO] BOSS - ============================================================
+2026-07-13 21:04:18,866 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:04:18,866 [INFO] BOSS - ============================================================
+2026-07-13 21:04:18,867 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:04:18,869 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:04:18,869 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:04:18,869 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:04:18,870 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:04:18,870 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:07:43,858 [INFO] BOSS - ============================================================
+2026-07-13 21:07:43,858 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:07:43,858 [INFO] BOSS - ============================================================
+2026-07-13 21:07:43,859 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:07:43,860 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:07:43,860 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:07:43,860 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:07:43,860 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:07:43,860 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:43:19,812 [INFO] BOSS - ============================================================
+2026-07-13 21:43:19,813 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:43:19,813 [INFO] BOSS - ============================================================
+2026-07-13 21:43:19,816 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:43:19,817 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:43:19,817 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:43:19,817 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:43:19,820 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:43:19,821 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:45:22,822 [INFO] BOSS - ============================================================
+2026-07-13 21:45:22,822 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:45:22,822 [INFO] BOSS - ============================================================
+2026-07-13 21:45:22,823 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:45:22,824 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:45:22,824 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:45:22,824 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:45:22,825 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:45:22,825 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:45:22,827 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 21:45:22,862 [INFO] BOSS - ============================================================
+2026-07-13 21:45:22,863 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:45:22,863 [INFO] BOSS - ============================================================
+2026-07-13 21:45:22,863 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:45:22,864 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 21:45:22,865 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 21:45:22,865 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 21:47:14,294 [INFO] BOSS - ============================================================
+2026-07-13 21:47:14,294 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:47:14,294 [INFO] BOSS - ============================================================
+2026-07-13 21:47:14,295 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:47:14,296 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:47:14,296 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:47:14,296 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:47:14,297 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:47:14,297 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:47:14,299 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 21:47:14,316 [INFO] BOSS - ============================================================
+2026-07-13 21:47:14,316 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:47:14,316 [INFO] BOSS - ============================================================
+2026-07-13 21:47:14,316 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:47:14,319 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 21:47:14,320 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 21:47:14,320 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 21:48:29,940 [INFO] BOSS - ============================================================
+2026-07-13 21:48:29,940 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:48:29,940 [INFO] BOSS - ============================================================
+2026-07-13 21:48:29,941 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:48:29,942 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:48:29,942 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:48:29,942 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:48:29,942 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:48:29,942 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:48:29,945 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 21:48:29,954 [INFO] BOSS - ============================================================
+2026-07-13 21:48:29,954 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:48:29,954 [INFO] BOSS - ============================================================
+2026-07-13 21:48:29,955 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:48:29,957 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 21:48:29,957 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 21:48:29,957 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 21:54:08,991 [INFO] BOSS - ============================================================
+2026-07-13 21:54:08,991 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:54:08,991 [INFO] BOSS - ============================================================
+2026-07-13 21:54:08,992 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:54:08,993 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:54:08,993 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:54:08,993 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:54:08,994 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 21:54:08,994 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 21:54:08,997 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 21:54:09,003 [INFO] BOSS - ============================================================
+2026-07-13 21:54:09,003 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 21:54:09,003 [INFO] BOSS - ============================================================
+2026-07-13 21:54:09,003 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 21:54:09,005 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 21:54:09,006 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 21:54:09,006 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 22:03:37,376 [INFO] BOSS - ============================================================
+2026-07-13 22:03:37,376 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:03:37,376 [INFO] BOSS - ============================================================
+2026-07-13 22:03:37,377 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:03:37,378 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:03:37,378 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:03:37,378 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:03:37,378 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:03:37,378 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:03:37,382 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 22:03:37,390 [INFO] BOSS - ============================================================
+2026-07-13 22:03:37,391 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:03:37,391 [INFO] BOSS - ============================================================
+2026-07-13 22:03:37,392 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:03:37,393 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 22:03:37,393 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 22:03:37,393 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 22:10:55,640 [INFO] BOSS - ============================================================
+2026-07-13 22:10:55,641 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:10:55,641 [INFO] BOSS - ============================================================
+2026-07-13 22:10:55,642 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:10:55,642 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:10:55,642 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:10:55,642 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:10:55,643 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:10:55,644 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:10:55,646 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 22:10:55,656 [INFO] BOSS - ============================================================
+2026-07-13 22:10:55,656 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:10:55,656 [INFO] BOSS - ============================================================
+2026-07-13 22:10:55,656 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:10:55,658 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 22:10:55,659 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 22:10:55,659 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 22:16:49,536 [INFO] BOSS - ============================================================
+2026-07-13 22:16:49,538 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:16:49,538 [INFO] BOSS - ============================================================
+2026-07-13 22:16:49,539 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:16:49,540 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:16:49,541 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:16:49,541 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:16:49,541 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:16:49,541 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:16:49,544 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 22:16:49,553 [INFO] BOSS - ============================================================
+2026-07-13 22:16:49,553 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:16:49,553 [INFO] BOSS - ============================================================
+2026-07-13 22:16:49,554 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:16:49,555 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 22:16:49,556 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 22:16:49,556 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 22:25:55,836 [INFO] BOSS - ============================================================
+2026-07-13 22:25:55,836 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:25:55,836 [INFO] BOSS - ============================================================
+2026-07-13 22:25:55,837 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:25:55,838 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:25:55,838 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:25:55,838 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:25:55,839 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:25:55,839 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:25:55,841 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 22:25:55,851 [INFO] BOSS - ============================================================
+2026-07-13 22:25:55,851 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:25:55,851 [INFO] BOSS - ============================================================
+2026-07-13 22:25:55,851 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:25:55,852 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 22:25:55,853 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 22:25:55,853 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 22:30:44,610 [INFO] BOSS - ============================================================
+2026-07-13 22:30:44,610 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:30:44,610 [INFO] BOSS - ============================================================
+2026-07-13 22:30:44,611 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:30:44,612 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:30:44,612 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:30:44,612 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:30:44,613 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:30:44,613 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:30:44,616 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 22:30:44,623 [INFO] BOSS - ============================================================
+2026-07-13 22:30:44,623 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:30:44,623 [INFO] BOSS - ============================================================
+2026-07-13 22:30:44,624 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:30:44,624 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 22:30:44,625 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 22:30:44,625 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 22:44:54,931 [INFO] BOSS - ============================================================
+2026-07-13 22:44:54,931 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:44:54,931 [INFO] BOSS - ============================================================
+2026-07-13 22:44:54,932 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:44:54,933 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:44:54,934 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:44:54,934 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:44:54,935 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 22:44:54,935 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 22:44:54,938 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 22:44:54,946 [INFO] BOSS - ============================================================
+2026-07-13 22:44:54,946 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 22:44:54,946 [INFO] BOSS - ============================================================
+2026-07-13 22:44:54,947 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 22:44:54,948 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 22:44:54,949 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 22:44:54,949 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html
+2026-07-13 23:40:42,195 [INFO] BOSS - ============================================================
+2026-07-13 23:40:42,195 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 23:40:42,195 [INFO] BOSS - ============================================================
+2026-07-13 23:40:42,199 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 23:40:42,200 [WARNING] src.browser_driver - 导航第 1/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 23:40:42,200 [WARNING] src.browser_driver - 导航第 2/2 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 23:40:42,200 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 23:40:42,202 [WARNING] src.browser_driver - 导航第 1/1 次未到达 zhipin.com，当前地址: https://ntp.msn.cn/edge/ntp
+2026-07-13 23:40:42,202 [WARNING] src.browser_driver - WebDriver 导航被 Edge 新标签页覆盖，切换到 CDP 导航
+2026-07-13 23:40:42,209 [INFO] src.config_manager - 配置加载成功: config/config.yaml
+2026-07-13 23:40:42,269 [INFO] BOSS - ============================================================
+2026-07-13 23:40:42,270 [INFO] BOSS - BOSS自动投递工具 v1.0.0
+2026-07-13 23:40:42,270 [INFO] BOSS - ============================================================
+2026-07-13 23:40:42,271 [INFO] src.data_manager - 数据库初始化完成
+2026-07-13 23:40:42,273 [INFO] BOSS - 搜索关键词 [ai]: https://example.test/ai
+2026-07-13 23:40:42,274 [INFO] BOSS - 搜索关键词 [python]: https://example.test/python
+2026-07-13 23:40:42,274 [WARNING] BOSS - 关键词 [python] 无职位结果，页面状态=no_results，证据=data/diagnostics/python.html

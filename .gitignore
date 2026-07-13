@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Browser data (large)
+browser_data/
+edge_browser_data/
+edge_delivery_data/
+edge_selenium_probe/
+
+# Drivers (binary, large)
+drivers/
+
+# IDE
+.vscode/
+.idea/
+
+# Data locks / runtime
+data/browser_profiles/
+data/diagnostics/
+data/automation.lock
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Debug temp files
+test_flow.py
+修复说明.md
